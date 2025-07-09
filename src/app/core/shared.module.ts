@@ -8,6 +8,14 @@ import {
   CalendarArrowUp,
   UserCheck,
   ArrowRight,
+  Loader2,
+  Upload,
+  Zap,
+  Clock,
+  CheckCircle,
+  Star,
+  Eye,
+  EyeOff,
 } from 'lucide-angular';
 
 @NgModule({
@@ -21,7 +29,16 @@ import {
       ArrowRight,
       UserCheck,
       CalendarArrowUp,
+      Loader2,
+      Upload,
+      Zap,
+      Clock,
+      CheckCircle,
+      Star,
+      Eye,
+      EyeOff,
     }),
   ],
+  exports: [CommonModule, LucideAngularModule],
 })
 export class SharedModule {}

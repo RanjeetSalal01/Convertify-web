@@ -1,1 +1,12 @@
-<p>file-conversion works!</p>
+<div
+  class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
+>
+  <app-file-conversion-header></app-file-conversion-header>
+
+  <ng-container *ngIf="isLoggedIn">
+    <app-logged-in></app-logged-in>
+  </ng-container>
+  <ng-container *ngIf="!isLoggedIn">
+    <app-guest></app-guest>
+  </ng-container>
+</div>

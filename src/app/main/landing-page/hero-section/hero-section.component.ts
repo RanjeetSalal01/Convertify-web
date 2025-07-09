@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { SharedModule } from '../../../core/shared.module';
-import { LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'app-hero-section',
   standalone: true,
-  imports: [SharedModule, LucideAngularModule],
+  imports: [SharedModule, SharedModule],
   templateUrl: './hero-section.component.html',
   styleUrl: './hero-section.component.scss',
 })

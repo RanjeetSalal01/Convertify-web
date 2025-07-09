@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { LucideAngularModule } from 'lucide-angular';
+import { SharedModule } from '../../../core/shared.module';
 
 @Component({
   selector: 'app-stats',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule],
+  imports: [CommonModule, SharedModule],
   templateUrl: './stats.component.html',
   styleUrl: './stats.component.scss',
 })
