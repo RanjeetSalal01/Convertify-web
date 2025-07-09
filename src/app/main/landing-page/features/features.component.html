@@ -1,0 +1,42 @@
+<div id="features" class="py-32 relative">
+  <div class="container mx-auto px-4">
+    <!-- Section Title -->
+    <div class="text-center mb-20">
+      <h2 class="text-5xl md:text-6xl font-black text-gray-800 mb-8">
+        Powerful
+        <span
+          class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+          >Features</span
+        >
+      </h2>
+      <p class="text-2xl text-gray-600 max-w-3xl mx-auto font-light">
+        Everything you need to convert files across all major formats
+      </p>
+    </div>
+
+    <!-- Feature Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div
+        *ngFor="let feature of features"
+        class="bg-white/80 backdrop-blur-lg border-0 shadow-2xl hover:shadow-purple-500/20 transition-all duration-500 transform hover:scale-105 hover:-rotate-1 group overflow-hidden rounded-2xl"
+      >
+        <div class="p-10">
+          <div
+            class="w-20 h-20 rounded-3xl flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg"
+            [ngClass]="'bg-gradient-to-r ' + feature.color"
+          >
+            <img [src]="feature.icon" class="invert w-10 h-10" alt="" srcset="">
+          </div>
+          <h3
+            class="text-2xl font-bold text-gray-800 mb-6 group-hover:text-purple-600 transition-colors"
+          >
+            {{ feature.title }}
+          </h3>
+          <p class="text-gray-600 leading-relaxed text-lg">
+            {{ feature.description }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

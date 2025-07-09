@@ -1,0 +1,52 @@
+<div
+  id="formats"
+  class="py-32 bg-gradient-to-r from-blue-600/10 to-purple-600/10 backdrop-blur-sm"
+>
+  <div class="container mx-auto px-4">
+    <!-- Section Heading -->
+    <div class="text-center mb-20">
+      <h2 class="text-5xl md:text-6xl font-black text-gray-800 mb-8">
+        Supported
+        <span
+          class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+        >
+          Formats
+        </span>
+      </h2>
+      <p class="text-2xl text-gray-600 max-w-3xl mx-auto font-light">
+        Convert between 100+ file formats across all media types
+      </p>
+    </div>
+
+    <!-- Format Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div
+        *ngFor="let format of formatCards"
+        class="bg-white/90 backdrop-blur-lg border-0 shadow-2xl transition-all duration-500 transform hover:scale-105 group rounded-xl"
+        [ngClass]="format.hoverShadow"
+      >
+        <div class="p-8 text-center">
+          <img
+            [src]="format.icon"
+            class="h-16 w-16 mx-auto mb-6 transition-transform group-hover:scale-110"
+            [ngClass]="format.color"
+            alt=""
+            srcset=""
+          />
+          <h3 class="text-xl font-bold text-gray-800 mb-4">
+            {{ format.title }}
+          </h3>
+          <div class="flex flex-wrap gap-2 justify-center">
+            <span
+              *ngFor="let ext of format.formats"
+              class="px-3 py-1 rounded-full text-sm font-medium"
+              [ngClass]="format.badgeColor"
+            >
+              {{ ext }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
