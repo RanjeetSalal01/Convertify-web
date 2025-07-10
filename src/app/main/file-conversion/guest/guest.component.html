@@ -3,140 +3,156 @@
   message="Converting your file..."
 ></app-loading-overlay>
 
-<div class="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 py-6">
-  <div class="container mx-auto px-4">
-    <!-- Welcome Section -->
-    <div class="text-center mb-10">
-      <h1
-        class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3"
-      >
-        File Converter
-      </h1>
-      <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
-        {{
-          isLoggedIn
-            ? "Welcome back, " + userEmail + "! Convert your files instantly."
-            : "Convert your files instantly with our powerful online tool."
-        }}
-      </p>
-    </div>
+<div
+  class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
+>
+  <app-file-conversion-header></app-file-conversion-header>
 
-    <div class="space-y-6 md:space-y-8">
-      <!-- File Upload -->
-      <app-file-upload-card
-        [isConverting]="isConverting"
-        [isLoggedIn]="isLoggedIn"
-        (conversionStart)="handleConversionStart($event)"
-      ></app-file-upload-card>
-
-      <!-- Guest Download Section -->
-      <ng-container
-        *ngIf="!isLoggedIn && lastConvertedFile?.status === 'completed'"
-      >
-        <div
-          class="w-full max-w-2xl mx-auto bg-white shadow-xl rounded-lg p-6 md:p-8"
+  <div
+    class="min-h-screen bg-gradient-to-br my-10 from-blue-50 to-purple-50 py-6"
+  >
+    <div class="container mx-auto px-4">
+      <!-- Welcome Section -->
+      <div class="text-center mb-10">
+        <h1
+          class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3"
         >
-          <div class="text-center mb-5">
-            <div
-              class="w-14 h-14 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-3"
-            >
-              <lucide-icon
-                name="check-circle"
-                class="h-5 w-5 text-white flex-shrink-0"
-              ></lucide-icon>
-            </div>
-            <h3 class="text-xl font-semibold text-gray-800 mb-1">
-              Conversion Complete!
-            </h3>
-            <p class="text-gray-600 text-sm">
-              Your file was converted successfully.
-            </p>
-          </div>
+          File Converter
+        </h1>
+        <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
+          {{
+            isLoggedIn
+              ? "Welcome back, " + userEmail + "! Convert your files instantly."
+              : "Convert your files instantly with our powerful online tool."
+          }}
+        </p>
+      </div>
 
-          <div class="bg-green-50 border border-green-200 rounded-lg p-5 mb-5">
-            <div class="flex items-center justify-between">
-              <div>
-                <p class="font-medium text-gray-800 text-sm md:text-base">
-                  {{
-                    lastConvertedFile.fileName.split(".")[0] +
-                      "." +
-                      lastConvertedFile.targetFormat
-                  }}
-                </p>
-                <p class="text-xs text-gray-600">
-                  {{ lastConvertedFile.fileSize }}
-                </p>
-              </div>
-              <button
-                class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-3 py-2 text-sm rounded"
-                (click)="handleDownload(lastConvertedFile.fileName)"
+      <div class="space-y-6 md:space-y-8">
+        <!-- File Upload -->
+        <app-file-upload-card
+          class="mb-8"
+          [isConverting]="isConverting"
+          (conversionStart)="onConversionStart($event)"
+          (conversionComplete)="onConversionComplete($event)"
+          (conversionError)="onConversionError($event)"
+        ></app-file-upload-card>
+
+        <!-- Guest Download Section -->
+        <ng-container
+          *ngIf="!isLoggedIn && lastConvertedFile?.status === 'completed'"
+        >
+          <div
+            class="w-full max-w-2xl mx-auto bg-white shadow-xl rounded-lg p-6 md:p-8"
+          >
+            <div class="text-center mb-5">
+              <div
+                class="w-14 h-14 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-3"
               >
-                Download
+                <lucide-icon
+                  name="check-circle"
+                  class="h-5 w-5 text-white flex-shrink-0"
+                ></lucide-icon>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-1">
+                Conversion Complete!
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Your file was converted successfully.
+              </p>
+            </div>
+
+            <div
+              class="bg-green-50 border border-green-200 rounded-lg p-5 mb-5"
+            >
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="font-medium text-gray-800 text-sm md:text-base">
+                    {{
+                      lastConvertedFile.fileName.split(".")[0] +
+                        "." +
+                        lastConvertedFile.targetFormat
+                    }}
+                  </p>
+                  <p class="text-xs text-gray-600">
+                    {{ lastConvertedFile.fileSize }}
+                  </p>
+                </div>
+                <button
+                  class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-3 py-2 text-sm rounded"
+                  (click)="handleDownload('', '')"
+                >
+                  Download
+                </button>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <p class="text-sm text-gray-600 mb-3">
+                💡 Want to save your conversion history? Sign in for free!
+              </p>
+              <button
+                class="border px-4 py-2 rounded text-gray-600 hover:text-gray-800 text-sm"
+                (click)="lastConvertedFile = null"
+              >
+                Convert Another File
               </button>
             </div>
           </div>
+        </ng-container>
 
-          <div class="text-center">
-            <p class="text-sm text-gray-600 mb-3">
-              💡 Want to save your conversion history? Sign in for free!
-            </p>
-            <button
-              class="border px-4 py-2 rounded text-gray-600 hover:text-gray-800 text-sm"
-              (click)="lastConvertedFile = null"
-            >
-              Convert Another File
-            </button>
-          </div>
-        </div>
-      </ng-container>
-
-      <!-- Guest Features Section -->
-      <ng-container *ngIf="!isLoggedIn && !lastConvertedFile">
-        <div
-          class="bg-gradient-to-r from-indigo-50 to-purple-50 border-2 border-indigo-200 max-w-4xl mx-auto p-6 md:p-8 rounded-lg"
-        >
-          <div class="text-center mb-6 md:mb-8">
-            <div
-              class="w-14 h-14 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-3"
-            >
-              <lucide-icon name="star" class="h-6 w-6 text-white"></lucide-icon>
+        <!-- Guest Features Section -->
+        <ng-container *ngIf="!isLoggedIn && !lastConvertedFile">
+          <div
+            class="bg-gradient-to-r from-indigo-50 to-purple-50 border-2 border-indigo-200 max-w-4xl mx-auto p-6 md:p-8 rounded-lg"
+          >
+            <div class="text-center mb-6 md:mb-8">
+              <div
+                class="w-14 h-14 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-3"
+              >
+                <lucide-icon
+                  name="star"
+                  class="h-6 w-6 text-white"
+                ></lucide-icon>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-800 mb-2">
+                Unlock Premium Features
+              </h3>
+              <p class="text-base text-gray-600 max-w-xl mx-auto">
+                Sign up for free to access advanced features and save your
+                conversion history.
+              </p>
             </div>
-            <h3 class="text-2xl font-bold text-gray-800 mb-2">
-              Unlock Premium Features
-            </h3>
-            <p class="text-base text-gray-600 max-w-xl mx-auto">
-              Sign up for free to access advanced features and save your
-              conversion history.
-            </p>
-          </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-            <div
-              class="flex items-center gap-2 text-sm text-gray-700"
-              *ngFor="let item of premiumFeatures"
-            >
-              <lucide-icon
-                name="check-circle"
-                class="h-5 w-5 text-green-500 flex-shrink-0"
-              ></lucide-icon>
-              <span>{{ item }}</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <div
+                class="flex items-center gap-2 text-sm text-gray-700"
+                *ngFor="let item of premiumFeatures"
+              >
+                <lucide-icon
+                  name="check-circle"
+                  class="h-5 w-5 text-green-500 flex-shrink-0"
+                ></lucide-icon>
+                <span>{{ item }}</span>
+              </div>
             </div>
-          </div>
 
-          <div class="text-center text-sm text-gray-600">
-            <p class="mb-3">
-              Join thousands of users who trust Convertify for file conversion.
-            </p>
-            <div
-              class="flex flex-wrap justify-center gap-3 text-gray-500 text-xs"
-            >
-              <span>✨ Free forever</span>
-              <span>🚀 No credit card required</span>
-              <span>🔒 100% secure</span>
+            <div class="text-center text-sm text-gray-600">
+              <p class="mb-3">
+                Join thousands of users who trust Convertify for file
+                conversion.
+              </p>
+              <div
+                class="flex flex-wrap justify-center gap-3 text-gray-500 text-xs"
+              >
+                <span>✨ Free forever</span>
+                <span>🚀 No credit card required</span>
+                <span>🔒 100% secure</span>
+              </div>
             </div>
           </div>
-        </div>
-      </ng-container>
+        </ng-container>
+      </div>
     </div>
   </div>
 </div>

@@ -9,6 +9,10 @@ import {
 } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { SharedModule } from '../../core/shared.module';
+import { AppService } from '../../core/services/app.service';
+import { API } from '../../api';
+import { Router } from '@angular/router';
+import { ToasterService } from '../../core/services/toaster.service';
 export interface AuthDialogData {
   mode?: 'login' | 'signup';
 }
@@ -22,12 +26,7 @@ export interface AuthResult {
 @Component({
   selector: 'app-auth',
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SharedModule,
-  ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, SharedModule],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss',
 })
@@ -37,8 +36,13 @@ export class AuthComponent {
   loginForm!: FormGroup;
   signupForm!: FormGroup;
 
+  isLoading: boolean = false;
+
   constructor(
     private fb: FormBuilder,
+    private toast: ToasterService,
+    private router: Router,
+    private service: AppService,
     private dialogRef: MatDialogRef<AuthComponent>,
     @Inject(MAT_DIALOG_DATA) public data: AuthDialogData
   ) {}
@@ -82,28 +86,85 @@ export class AuthComponent {
 
   onSubmit(): void {
     if (this.isLoginMode) {
-      if (this.loginForm.valid) {
-        const { email, password } = this.loginForm.value;
-        this.dialogRef.close({ email, password });
-      }
+      this.onLogin();
     } else {
-      if (this.signupForm.valid) {
-        const { name, email, password } = this.signupForm.value;
-        this.dialogRef.close({ name, email, password });
-      }
+      this.onSignup();
     }
   }
 
-  onGoogleLogin(): void {
-    // Handle Google login logic here
-    console.log('Google login clicked');
-    this.dialogRef.close({ provider: 'google' });
+  onLogin(): void {
+    try {
+      if (this.loginForm.valid) {
+        this.isLoading = true;
+        const { email, password } = this.loginForm.value;
+        let url = `${API.domain + API.endPoint.login}`;
+
+        this.service.postMethod(url, { email, password }).subscribe({
+          next: (res: any) => {
+            if (res.success) {
+              localStorage.setItem(
+                'Convertify',
+                JSON.stringify({
+                  token: res.token,
+                  user: res.user,
+                  expiresAt: Date.now() + 24 * 60 * 60 * 1000, // now + 1 day
+                })
+              );
+              this.dialogRef.close({ email, password });
+              this.router.navigate(['/file-conversion/logged-in']);
+              this.toast.showSuccessToaster(res.message, 'Success');
+            } else {
+              this.toast.showWarningToaster(res.message, 'Warning');
+            }
+            this.isLoading = false;
+          },
+          error: (err: any) => {
+            this.isLoading = false;
+            console.error('Error during login:', err);
+          },
+        });
+      }
+    } catch (error) {
+      this.toast.showErrorToaster('Login failed', 'Error');
+      console.error('Login failed:', error);
+    }
   }
 
-  onTwitterLogin(): void {
-    // Handle Twitter login logic here
-    console.log('Twitter login clicked');
-    this.dialogRef.close({ provider: 'twitter' });
+  onSignup(): void {
+    if (this.signupForm.invalid) return;
+
+    const { name, email, password } = this.signupForm.value;
+
+    const url = `${API.domain}${API.endPoint.register}`;
+    const payload = { name, email, password };
+    this.isLoading = true;
+
+    this.service.postMethod(url, payload).subscribe({
+      next: (res: any) => {
+        this.isLoading = false;
+
+        if (res.success) {
+          localStorage.setItem(
+            'Convertify',
+            JSON.stringify({
+              token: res.token,
+              user: res.user,
+              expiresAt: Date.now() + 24 * 60 * 60 * 1000,
+            })
+          );
+          this.router.navigate(['/file-conversion/logged-in']);
+          this.dialogRef?.close({ email, password }); // Optional: pass only user
+          this.toast.showSuccessToaster(res.message, 'Success');
+        } else {
+          this.toast.showWarningToaster(res.message, 'Warning');
+        }
+      },
+      error: (err: any) => {
+        this.isLoading = false;
+        console.error('Signup Error:', err);
+        this.toast.showErrorToaster('Signup error. Please try again.', 'Error');
+      },
+    });
   }
 
   getEmailError(): string {

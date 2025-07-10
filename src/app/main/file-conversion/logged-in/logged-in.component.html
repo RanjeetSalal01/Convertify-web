@@ -1,122 +1,404 @@
-<div class="container mx-auto px-4 py-8">
-  <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-    <div
-      class="bg-gradient-to-r from-blue-500 to-cyan-500 text-white border-0 shadow-lg rounded-lg"
-    >
-      <div class="p-6">
-        <div class="flex items-center justify-between">
-          <div>
-            <p class="text-blue-100 text-sm font-medium">Total Conversions</p>
-            <p class="text-3xl font-bold">{{ stats.total }}</p>
-          </div>
-          <svg
-            class="h-8 w-8 text-blue-200"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-            />
-          </svg>
-        </div>
-      </div>
-    </div>
-    <div
-      class="bg-gradient-to-r from-green-500 to-emerald-500 text-white border-0 shadow-lg rounded-lg"
-    >
-      <div class="p-6">
-        <div class="flex items-center justify-between">
-          <div>
-            <p class="text-green-100 text-sm font-medium">Completed</p>
-            <p class="text-3xl font-bold">{{ stats.completed }}</p>
-          </div>
-          <svg
-            class="h-8 w-8 text-green-200"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-        </div>
-      </div>
-    </div>
-    <div
-      class="bg-gradient-to-r from-yellow-500 to-orange-500 text-white border-0 shadow-lg rounded-lg"
-    >
-      <div class="p-6">
-        <div class="flex items-center justify-between">
-          <div>
-            <p class="text-yellow-100 text-sm font-medium">Processing</p>
-            <p class="text-3xl font-bold">{{ stats.processing }}</p>
-          </div>
-          <svg
-            class="h-8 w-8 text-yellow-200"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-        </div>
-      </div>
-    </div>
-    <div
-      class="bg-gradient-to-r from-red-500 to-pink-500 text-white border-0 shadow-lg rounded-lg"
-    >
-      <div class="p-6">
-        <div class="flex items-center justify-between">
-          <div>
-            <p class="text-red-100 text-sm font-medium">Failed</p>
-            <p class="text-3xl font-bold">{{ stats.failed }}</p>
-          </div>
-          <svg
-            class="h-8 w-8 text-red-200"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-        </div>
-      </div>
-    </div>
-  </div>
+<div
+  class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
+>
+  <app-file-conversion-header></app-file-conversion-header>
 
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-    <!-- File Upload & Convert -->
-    <div class="lg:col-span-1">
+  <div class="container mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
       <div
-        class="bg-white/90 backdrop-blur-lg shadow-2xl border-0 overflow-hidden rounded-lg transform hover:scale-[1.02] transition-all duration-300"
+        class="bg-gradient-to-r from-blue-500 to-cyan-500 text-white border-0 shadow-lg rounded-lg"
       >
+        <div class="p-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-blue-100 text-sm font-medium">Total Conversions</p>
+              <p class="text-3xl font-bold">{{ stats.total }}</p>
+            </div>
+            <svg
+              class="h-8 w-8 text-blue-200"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div
+        class="bg-gradient-to-r from-green-500 to-emerald-500 text-white border-0 shadow-lg rounded-lg"
+      >
+        <div class="p-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-green-100 text-sm font-medium">Completed</p>
+              <p class="text-3xl font-bold">{{ stats.completed }}</p>
+            </div>
+            <svg
+              class="h-8 w-8 text-green-200"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div
+        class="bg-gradient-to-r from-yellow-500 to-orange-500 text-white border-0 shadow-lg rounded-lg"
+      >
+        <div class="p-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-yellow-100 text-sm font-medium">Processing</p>
+              <p class="text-3xl font-bold">{{ stats.processing }}</p>
+            </div>
+            <svg
+              class="h-8 w-8 text-yellow-200"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div
+        class="bg-gradient-to-r from-red-500 to-pink-500 text-white border-0 shadow-lg rounded-lg"
+      >
+        <div class="p-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-red-100 text-sm font-medium">Failed</p>
+              <p class="text-3xl font-bold">{{ stats.failed }}</p>
+            </div>
+            <svg
+              class="h-8 w-8 text-red-200"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- File Upload & Convert -->
+      <div class="lg:col-span-1">
         <div
-          class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 md:p-6"
+          class="bg-white/90 backdrop-blur-lg shadow-2xl border-0 overflow-hidden rounded-lg transform hover:scale-[1.02] transition-all duration-300"
         >
-          <h2 class="flex items-center gap-3 text-lg md:text-xl font-semibold">
-            <div
-              class="w-8 h-8 md:w-10 md:h-10 bg-white/20 rounded-full flex items-center justify-center"
+          <div
+            class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 md:p-6"
+          >
+            <h2
+              class="flex items-center gap-3 text-lg md:text-xl font-semibold"
+            >
+              <div
+                class="w-8 h-8 md:w-10 md:h-10 bg-white/20 rounded-full flex items-center justify-center"
+              >
+                <svg
+                  class="h-4 w-4 md:h-5 md:w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                  />
+                </svg>
+              </div>
+              Convert File
+            </h2>
+          </div>
+
+          <div class="p-4 md:p-8 space-y-6 md:space-y-8">
+            <div class="space-y-3">
+              <label class="text-sm font-bold text-gray-700 block"
+                >Select File</label
+              >
+              <div class="relative">
+                <input
+                  type="file"
+                  (change)="handleFileSelect($event)"
+                  class="bg-gray-50/50 border-gray-200 focus:border-blue-500 focus:ring-blue-500/20 rounded-xl h-12 text-sm md:text-lg w-full px-3 py-2 border focus:outline-none focus:ring-2 transition-all duration-300"
+                  accept=".jpg,.jpeg,.png,.gif,.bmp,.webp,.mp4,.avi,.mkv,.mov,.wmv,.mp3,.wav,.aac,.ogg,.flac,.pdf,.docx,.txt,.odt,.rtf"
+                />
+              </div>
+
+              <div
+                *ngIf="selectedFile"
+                class="bg-blue-50 p-4 rounded-lg animate-pulse"
+              >
+                <div class="flex items-center gap-3">
+                  <ng-container [ngSwitch]="getFileType(selectedFile.name)">
+                    <svg
+                      *ngSwitchCase="'image'"
+                      class="h-4 w-4 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      />
+                    </svg>
+                    <svg
+                      *ngSwitchCase="'video'"
+                      class="h-4 w-4 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                      />
+                    </svg>
+                    <svg
+                      *ngSwitchCase="'audio'"
+                      class="h-4 w-4 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
+                      />
+                    </svg>
+                    <svg
+                      *ngSwitchDefault
+                      class="h-4 w-4 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      />
+                    </svg>
+                  </ng-container>
+                  <div>
+                    <p class="font-medium text-gray-800 text-sm md:text-base">
+                      {{ selectedFile.name }}
+                    </p>
+                    <p class="text-xs md:text-sm text-gray-600">
+                      {{ formatFileSize(selectedFile.size) }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-3">
+              <label class="text-sm font-bold text-gray-700 block"
+                >Convert To</label
+              >
+              <select
+                [(ngModel)]="targetFormat"
+                class="bg-gray-50/50 border-gray-200 focus:border-blue-500 focus:ring-blue-500/20 rounded-xl h-12 w-full px-3 py-2 border focus:outline-none focus:ring-2 transition-all duration-300"
+              >
+                <option value="" disabled>Choose target format</option>
+                <option value="jpg">JPG</option>
+                <option value="png">PNG</option>
+                <option value="webp">WebP</option>
+                <option value="pdf">PDF</option>
+                <option value="docx">DOCX</option>
+                <option value="txt">TXT</option>
+                <option value="mp4">MP4</option>
+                <option value="avi">AVI</option>
+                <option value="mp3">MP3</option>
+                <option value="wav">WAV</option>
+              </select>
+            </div>
+
+            <!-- Conversion Progress (shown when converting) -->
+            <div *ngIf="isConverting" class="space-y-4">
+              <div class="text-center">
+                <div
+                  class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mb-4 animate-pulse"
+                >
+                  <svg
+                    class="h-8 w-8 text-white animate-spin"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                    />
+                  </svg>
+                </div>
+                <p class="text-lg font-semibold text-gray-700 mb-2">
+                  Converting your file...
+                </p>
+                <p class="text-sm text-gray-500">
+                  Please wait while we process your file
+                </p>
+              </div>
+
+              <div class="w-full bg-gray-200 rounded-full h-2">
+                <div
+                  class="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-300"
+                  [style.width.%]="conversionProgress"
+                ></div>
+              </div>
+
+              <div class="text-center">
+                <p class="text-sm text-gray-600">
+                  {{ conversionProgress }}% Complete
+                </p>
+              </div>
+            </div>
+
+            <button
+              (click)="handleConvert()"
+              class="w-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 text-white font-bold py-3 md:py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 group flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              [disabled]="!selectedFile || !targetFormat || isConverting"
             >
               <svg
-                class="h-4 w-4 md:h-5 md:w-5"
+                *ngIf="!isConverting"
+                class="h-5 w-5 group-hover:rotate-12 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                />
+              </svg>
+              <svg
+                *ngIf="isConverting"
+                class="h-5 w-5 animate-spin"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                />
+              </svg>
+              <span>{{
+                isConverting ? "Converting..." : "Start Conversion"
+              }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Conversion History -->
+      <div
+        class="bg-white/90 lg:col-span-2 backdrop-blur-lg shadow-2xl border-0 rounded-lg"
+      >
+        <div
+          class="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-6"
+        >
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3 text-xl">
+              <div
+                class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center"
+              >
+                <svg
+                  class="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+              <span class="font-semibold">Conversion History</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="relative">
+                <svg
+                  class="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/70 h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+                <input
+                  placeholder="Search files..."
+                  [(ngModel)]="searchTerm"
+                  class="pl-10 bg-white/20 border-white/30 text-white placeholder:text-white/70 rounded-lg h-9 w-48 px-3 py-2 border focus:outline-none"
+                />
+              </div>
+              <select
+                [(ngModel)]="filterStatus"
+                class="bg-white/20 border-white/30 text-white rounded-lg h-9 w-32 px-3 py-2 border focus:outline-none"
+              >
+                <option value="all">All Status</option>
+                <option value="completed">Completed</option>
+                <option value="processing">Processing</option>
+                <option value="failed">Failed</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="p-8">
+          <div class="space-y-6">
+            <div *ngIf="filteredJobs.length === 0" class="text-center py-16">
+              <svg
+                class="h-16 w-16 text-gray-400 mx-auto mb-6"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -128,301 +410,100 @@
                   d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
                 />
               </svg>
-            </div>
-            Convert File
-          </h2>
-        </div>
-
-        <div class="p-4 md:p-8 space-y-6 md:space-y-8">
-          <div class="space-y-3">
-            <label class="text-sm font-bold text-gray-700 block"
-              >Select File</label
-            >
-            <div class="relative">
-              <input
-                type="file"
-                (change)="handleFileSelect($event)"
-                class="bg-gray-50/50 border-gray-200 focus:border-blue-500 focus:ring-blue-500/20 rounded-xl h-12 text-sm md:text-lg w-full px-3 py-2 border focus:outline-none focus:ring-2 transition-all duration-300"
-                accept=".jpg,.jpeg,.png,.gif,.bmp,.webp,.mp4,.avi,.mkv,.mov,.wmv,.mp3,.wav,.aac,.ogg,.flac,.pdf,.docx,.txt,.odt,.rtf"
-              />
+              <p class="text-gray-500 text-xl">No conversions found</p>
+              <p class="text-gray-400">Try adjusting your search or filters</p>
             </div>
 
             <div
-              *ngIf="selectedFile"
-              class="bg-blue-50 p-4 rounded-lg animate-pulse"
+              *ngFor="let job of filteredJobs"
+              class="bg-gradient-to-r from-white to-gray-50 rounded-2xl p-8 border border-gray-100 hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02] group"
             >
-              <div class="flex items-center gap-3">
-                <ng-container [ngSwitch]="getFileType(selectedFile.name)">
-                  <svg
-                    *ngSwitchCase="'image'"
-                    class="h-4 w-4 text-blue-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+              <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center gap-4">
+                  <div
+                    [ngClass]="
+                      'w-14 h-14 bg-gradient-to-r ' +
+                      getFileGradient(job.fileType) +
+                      ' rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform'
+                    "
                   >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                    />
-                  </svg>
-                  <svg
-                    *ngSwitchCase="'video'"
-                    class="h-4 w-4 text-blue-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
-                    />
-                  </svg>
-                  <svg
-                    *ngSwitchCase="'audio'"
-                    class="h-4 w-4 text-blue-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
-                    />
-                  </svg>
-                  <svg
-                    *ngSwitchDefault
-                    class="h-4 w-4 text-blue-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                    />
-                  </svg>
-                </ng-container>
-                <div>
-                  <p class="font-medium text-gray-800 text-sm md:text-base">
-                    {{ selectedFile.name }}
-                  </p>
-                  <p class="text-xs md:text-sm text-gray-600">
-                    {{ formatFileSize(selectedFile.size) }}
-                  </p>
+                    <div class="text-white">
+                      <ng-container [ngSwitch]="job.fileType">
+                        <svg
+                          *ngSwitchCase="'image'"
+                          class="h-4 w-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                          />
+                        </svg>
+                        <svg
+                          *ngSwitchCase="'video'"
+                          class="h-4 w-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                          />
+                        </svg>
+                        <svg
+                          *ngSwitchCase="'audio'"
+                          class="h-4 w-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
+                          />
+                        </svg>
+                        <svg
+                          *ngSwitchDefault
+                          class="h-4 w-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                          />
+                        </svg>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="font-bold text-gray-800 text-lg">
+                      {{ job.fileName }}
+                    </div>
+                    <div class="text-sm text-gray-500 font-medium">
+                      {{ job.fileSize }} →
+                      {{ job.targetFormat.toUpperCase() }}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="space-y-3">
-            <label class="text-sm font-bold text-gray-700 block"
-              >Convert To</label
-            >
-            <select
-              [(ngModel)]="targetFormat"
-              class="bg-gray-50/50 border-gray-200 focus:border-blue-500 focus:ring-blue-500/20 rounded-xl h-12 w-full px-3 py-2 border focus:outline-none focus:ring-2 transition-all duration-300"
-            >
-              <option value="" disabled>Choose target format</option>
-              <option value="jpg">JPG</option>
-              <option value="png">PNG</option>
-              <option value="webp">WebP</option>
-              <option value="pdf">PDF</option>
-              <option value="docx">DOCX</option>
-              <option value="txt">TXT</option>
-              <option value="mp4">MP4</option>
-              <option value="avi">AVI</option>
-              <option value="mp3">MP3</option>
-              <option value="wav">WAV</option>
-            </select>
-          </div>
-
-          <!-- Conversion Progress (shown when converting) -->
-          <div *ngIf="isConverting" class="space-y-4">
-            <div class="text-center">
-              <div
-                class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mb-4 animate-pulse"
-              >
-                <svg
-                  class="h-8 w-8 text-white animate-spin"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                  />
-                </svg>
-              </div>
-              <p class="text-lg font-semibold text-gray-700 mb-2">
-                Converting your file...
-              </p>
-              <p class="text-sm text-gray-500">
-                Please wait while we process your file
-              </p>
-            </div>
-
-            <div class="w-full bg-gray-200 rounded-full h-2">
-              <div
-                class="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-300"
-                [style.width.%]="conversionProgress"
-              ></div>
-            </div>
-
-            <div class="text-center">
-              <p class="text-sm text-gray-600">
-                {{ conversionProgress }}% Complete
-              </p>
-            </div>
-          </div>
-
-          <button
-            (click)="handleConvert()"
-            class="w-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 text-white font-bold py-3 md:py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 group flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-            [disabled]="!selectedFile || !targetFormat || isConverting"
-          >
-            <svg
-              *ngIf="!isConverting"
-              class="h-5 w-5 group-hover:rotate-12 transition-transform"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13 10V3L4 14h7v7l9-11h-7z"
-              />
-            </svg>
-            <svg
-              *ngIf="isConverting"
-              class="h-5 w-5 animate-spin"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-              />
-            </svg>
-            <span>{{
-              isConverting ? "Converting..." : "Start Conversion"
-            }}</span>
-          </button>
-        </div>
-      </div>
-    </div>
-    <!-- Conversion History -->
-    <div
-      class="bg-white/90 lg:col-span-2 backdrop-blur-lg shadow-2xl border-0 rounded-lg"
-    >
-      <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-6">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-3 text-xl">
-            <div
-              class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center"
-            >
-              <svg
-                class="h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                />
-              </svg>
-            </div>
-            <span class="font-semibold">Conversion History</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <div class="relative">
-              <svg
-                class="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/70 h-4 w-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-              <input
-                placeholder="Search files..."
-                [(ngModel)]="searchTerm"
-                class="pl-10 bg-white/20 border-white/30 text-white placeholder:text-white/70 rounded-lg h-9 w-48 px-3 py-2 border focus:outline-none"
-              />
-            </div>
-            <select
-              [(ngModel)]="filterStatus"
-              class="bg-white/20 border-white/30 text-white rounded-lg h-9 w-32 px-3 py-2 border focus:outline-none"
-            >
-              <option value="all">All Status</option>
-              <option value="completed">Completed</option>
-              <option value="processing">Processing</option>
-              <option value="failed">Failed</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="p-8">
-        <div class="space-y-6">
-          <div *ngIf="filteredJobs.length === 0" class="text-center py-16">
-            <svg
-              class="h-16 w-16 text-gray-400 mx-auto mb-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-              />
-            </svg>
-            <p class="text-gray-500 text-xl">No conversions found</p>
-            <p class="text-gray-400">Try adjusting your search or filters</p>
-          </div>
-
-          <div
-            *ngFor="let job of filteredJobs"
-            class="bg-gradient-to-r from-white to-gray-50 rounded-2xl p-8 border border-gray-100 hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02] group"
-          >
-            <div class="flex items-start justify-between mb-4">
-              <div class="flex items-center gap-4">
-                <div
-                  [ngClass]="
-                    'w-14 h-14 bg-gradient-to-r ' +
-                    getFileGradient(job.fileType) +
-                    ' rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform'
-                  "
-                >
-                  <div class="text-white">
-                    <ng-container [ngSwitch]="job.fileType">
+                <div class="text-right flex items-center gap-3">
+                  <span [ngClass]="getStatusBadgeClass(job.status)">
+                    <ng-container [ngSwitch]="job.status">
                       <svg
-                        *ngSwitchCase="'image'"
-                        class="h-4 w-4"
+                        *ngSwitchCase="'completed'"
+                        class="h-3 w-3 mr-1"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -431,12 +512,12 @@
                           stroke-linecap="round"
                           stroke-linejoin="round"
                           stroke-width="2"
-                          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                         />
                       </svg>
                       <svg
-                        *ngSwitchCase="'video'"
-                        class="h-4 w-4"
+                        *ngSwitchCase="'failed'"
+                        class="h-3 w-3 mr-1"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -445,12 +526,12 @@
                           stroke-linecap="round"
                           stroke-linejoin="round"
                           stroke-width="2"
-                          d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                          d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
                         />
                       </svg>
                       <svg
-                        *ngSwitchCase="'audio'"
-                        class="h-4 w-4"
+                        *ngSwitchCase="'processing'"
+                        class="h-3 w-3 mr-1"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -459,12 +540,12 @@
                           stroke-linecap="round"
                           stroke-linejoin="round"
                           stroke-width="2"
-                          d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                         />
                       </svg>
                       <svg
-                        *ngSwitchDefault
-                        class="h-4 w-4"
+                        *ngSwitchCase="'uploading'"
+                        class="h-3 w-3 mr-1"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -473,87 +554,40 @@
                           stroke-linecap="round"
                           stroke-linejoin="round"
                           stroke-width="2"
-                          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                          d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
                         />
                       </svg>
                     </ng-container>
-                  </div>
-                </div>
-                <div>
-                  <div class="font-bold text-gray-800 text-lg">
-                    {{ job.fileName }}
-                  </div>
-                  <div class="text-sm text-gray-500 font-medium">
-                    {{ job.fileSize }} →
-                    {{ job.targetFormat.toUpperCase() }}
-                  </div>
+                    {{ getStatusText(job.status) }}
+                  </span>
+                  <button
+                    *ngIf="job.status === 'completed' && job.downloadUrl"
+                    class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm flex items-center gap-1"
+                  >
+                    <svg
+                      class="h-4 w-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      />
+                    </svg>
+                    Download
+                  </button>
                 </div>
               </div>
-              <div class="text-right flex items-center gap-3">
-                <span [ngClass]="getStatusBadgeClass(job.status)">
-                  <ng-container [ngSwitch]="job.status">
-                    <svg
-                      *ngSwitchCase="'completed'"
-                      class="h-3 w-3 mr-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                    <svg
-                      *ngSwitchCase="'failed'"
-                      class="h-3 w-3 mr-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                    <svg
-                      *ngSwitchCase="'processing'"
-                      class="h-3 w-3 mr-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                    <svg
-                      *ngSwitchCase="'uploading'"
-                      class="h-3 w-3 mr-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                      />
-                    </svg>
-                  </ng-container>
-                  {{ getStatusText(job.status) }}
-                </span>
+              <div class="flex items-center justify-between">
+                <div class="text-xs text-gray-500 font-medium">
+                  {{ job.timestamp | date : "short" }}
+                </div>
                 <button
-                  *ngIf="job.status === 'completed' && job.downloadUrl"
-                  class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm flex items-center gap-1"
+                  *ngIf="job.status === 'failed'"
+                  class="text-red-600 border-red-200 hover:bg-red-50 px-3 py-1 rounded text-sm border flex items-center gap-1"
                 >
                   <svg
                     class="h-4 w-4"
@@ -565,36 +599,12 @@
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                     />
                   </svg>
-                  Download
+                  Remove
                 </button>
               </div>
-            </div>
-            <div class="flex items-center justify-between">
-              <div class="text-xs text-gray-500 font-medium">
-                {{ job.timestamp | date : "short" }}
-              </div>
-              <button
-                *ngIf="job.status === 'failed'"
-                class="text-red-600 border-red-200 hover:bg-red-50 px-3 py-1 rounded text-sm border flex items-center gap-1"
-              >
-                <svg
-                  class="h-4 w-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                  />
-                </svg>
-                Remove
-              </button>
             </div>
           </div>
         </div>

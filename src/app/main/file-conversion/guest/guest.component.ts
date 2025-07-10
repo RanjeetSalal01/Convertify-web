@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../../core/shared.module';
 import { FileUploadCardComponent } from '../file-upload-card/file-upload-card.component';
 import { LoadingOverlayComponent } from '../loading-overlay/loading-overlay.component';
+import { FileConversionHeaderComponent } from '../file-conversion-header/file-conversion-header.component';
 
 interface ConversionJob {
   id: string;
@@ -26,6 +27,7 @@ interface ConversionJob {
     FileUploadCardComponent,
     LoadingOverlayComponent,
     SharedModule,
+    FileConversionHeaderComponent,
   ],
   templateUrl: './guest.component.html',
   styleUrl: './guest.component.scss',
@@ -34,7 +36,6 @@ export class GuestComponent {
   @Input() isLoggedIn: boolean = false;
   @Input() userEmail?: string;
 
-  jobs: ConversionJob[] = [];
   isConverting = false;
   lastConvertedFile: any = null;
 
@@ -49,67 +50,30 @@ export class GuestComponent {
 
   constructor() {}
 
-  handleConversionStart({
-    file,
-    targetFormat,
-  }: {
-    file: File;
-    targetFormat: string;
-  }) {
+  onConversionStart(event: { file: File; targetFormat: string }) {
     this.isConverting = true;
-    this.lastConvertedFile = null;
+  }
 
-    const newJob: any = {
-      id: Date.now().toString(),
-      fileName: file.name,
-      fileSize: this.formatFileSize(file.size),
-      targetFormat,
-      status: 'uploading',
-      timestamp: new Date(),
-    };
+  onConversionComplete(response: any) {
+    this.isConverting = false;
+    console.log('Conversion completed:', response);
 
-    if (this.isLoggedIn) this.jobs.unshift(newJob);
-    // this.toast.success('Starting conversion...');
-
-    setTimeout(() => {
-      if (this.isLoggedIn) {
-        this.jobs = this.jobs.map((job) =>
-          job.id === newJob.id ? { ...job, status: 'processing' } : job
-        );
-      }
-      // this.toast.info('Processing your file...');
-    }, 1000);
-
-    setTimeout(() => {
-      const isSuccess = Math.random() > 0.1;
-      const finalStatus = isSuccess ? 'completed' : 'failed';
-      const completedJob = {
-        ...newJob,
-        status: finalStatus,
-        downloadUrl: isSuccess ? '#' : undefined,
+    if (response.success) {
+      this.lastConvertedFile = {
+        id: Date.now().toString(),
+        fileName: response.result?.originalName || 'Dummy',
+        fileSize: this.formatFileSize(response?.result?.size || 0),
+        targetFormat: response.result?.format || 'png',
+        status: 'completed',
+        timestamp: new Date(),
+        url: response?.url || '',
       };
+    }
+  }
 
-      if (this.isLoggedIn) {
-        this.jobs = this.jobs.map((job) =>
-          job.id === newJob.id ? completedJob : job
-        );
-      }
-
-      if (!this.isLoggedIn && isSuccess) {
-        this.lastConvertedFile = completedJob;
-      }
-
-      if (isSuccess) {
-        // this.toast.success('File converted successfully!');
-        if (!this.isLoggedIn) {
-          // this.toast.info('Sign in to save your conversion history!');
-        }
-      } else {
-        // this.toast.error('Conversion failed. Please try again.');
-      }
-
-      this.isConverting = false;
-    }, 3000);
+  onConversionError(error: string) {
+    this.isConverting = false;
+    console.error('Conversion error:', error);
   }
 
   formatFileSize(bytes: number): string {
@@ -120,12 +84,10 @@ export class GuestComponent {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   }
 
-  removeJob(jobId: string) {
-    this.jobs = this.jobs.filter((job) => job.id !== jobId);
-    // this.toast.success('Conversion removed');
-  }
-
-  handleDownload(fileName: string) {
-    // this.toast.success(`Downloaded ${fileName}!`);
+  handleDownload(url: string, fileName: string) {
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = fileName;
+    link.click();
   }
 }

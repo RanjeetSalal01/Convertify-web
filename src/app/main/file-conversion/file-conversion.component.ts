@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FileConversionHeaderComponent } from './file-conversion-header/file-conversion-header.component';
 import { GuestComponent } from './guest/guest.component';
 import { LoggedInComponent } from './logged-in/logged-in.component';
+import { FileConversionService } from './file-conversion.service';
+import { RouterOutlet } from '@angular/router';
 
 interface ConversionJob {
   id: string;
@@ -24,10 +26,11 @@ interface ConversionJob {
     FileConversionHeaderComponent,
     GuestComponent,
     LoggedInComponent,
+    RouterOutlet,
   ],
   templateUrl: './file-conversion.component.html',
   styleUrl: './file-conversion.component.scss',
 })
 export class FileConversionComponent {
-  isLoggedIn: boolean = false;
+  constructor(public fileService: FileConversionService) {}
 }

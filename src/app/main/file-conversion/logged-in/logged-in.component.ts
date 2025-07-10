@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FileConversionService } from '../file-conversion.service';
+import { FileConversionHeaderComponent } from '../file-conversion-header/file-conversion-header.component';
 
 interface ConversionJob {
   id: string;
@@ -16,7 +18,12 @@ interface ConversionJob {
 @Component({
   selector: 'app-logged-in',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule,],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    FileConversionHeaderComponent,
+  ],
   templateUrl: './logged-in.component.html',
   styleUrl: './logged-in.component.scss',
 })
@@ -30,6 +37,8 @@ export class LoggedInComponent {
   targetFormat: string = '';
   searchTerm: string = '';
   filterStatus: string = 'all';
+
+  constructor(public fileConversion: FileConversionService) {}
 
   jobs: ConversionJob[] = [
     {

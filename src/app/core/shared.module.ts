@@ -16,6 +16,9 @@ import {
   Star,
   Eye,
   EyeOff,
+  ChevronDown,
+  Image,
+  FileText,
 } from 'lucide-angular';
 
 @NgModule({
@@ -37,6 +40,9 @@ import {
       Star,
       Eye,
       EyeOff,
+      ChevronDown,
+      Image,
+      FileText
     }),
   ],
   exports: [CommonModule, LucideAngularModule],

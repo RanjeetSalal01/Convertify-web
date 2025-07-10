@@ -2,6 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FileConversionService } from '../file-conversion.service';
+import { AuthComponent } from '../../auth/auth.component';
+import { MatDialog } from '@angular/material/dialog';
 
 interface ConversionJob {
   id: string;
@@ -17,7 +20,7 @@ interface ConversionJob {
 @Component({
   selector: 'app-file-conversion-header',
   standalone: true,
-  imports: [ CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './file-conversion-header.component.html',
   styleUrl: './file-conversion-header.component.scss',
 })
@@ -31,8 +34,6 @@ export class FileConversionHeaderComponent {
   targetFormat: string = '';
   searchTerm: string = '';
   filterStatus: string = 'all';
-
-  constructor(private router: Router) {}
 
   jobs: ConversionJob[] = [
     {
@@ -65,6 +66,12 @@ export class FileConversionHeaderComponent {
       timestamp: new Date(Date.now() - 120000),
     },
   ];
+
+  constructor(
+    public fileConversion: FileConversionService,
+    private matDialog: MatDialog,
+    private router: Router
+  ) {}
 
   get stats() {
     return {
@@ -190,13 +197,18 @@ export class FileConversionHeaderComponent {
   }
 
   onBackToLanding(): void {
-    console.log('Back to landing clicked');
-    // Navigation logic goes here
+    this.router.navigate(['/']);
   }
 
   onLogout(): void {
-    console.log('Logout clicked');
+    localStorage.removeItem('Convertify');
     this.router.navigate(['/']);
-    // Auth/logout logic goes here
+  }
+
+  openAuthDialog() {
+    this.matDialog.open(AuthComponent, {
+      width: '400px',
+      data: { mode: 'login' }, // Default mode can be set here
+    });
   }
 }

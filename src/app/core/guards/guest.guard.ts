@@ -2,14 +2,14 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 
-export const AuthGuard: CanActivateFn = () => {
+export const GuestGuard: CanActivateFn = () => {
   const router = inject(Router);
   const token = localStorage.getItem('Convertify');
 
-  if (token) {
+  if (!token) {
     return true;
   } else {
-    router.navigate(['/']);
+    router.navigate(['/file-conversion/logged-in']);
     return false;
   }
 };
